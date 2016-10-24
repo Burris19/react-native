@@ -7,30 +7,43 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  Image,
-  StyleSheet,
   Text,
   View
 } from 'react-native';
 
-class Greeting extends Component {
+class Blink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showText: true
+    };
+
+    setInterval(() => {
+      this.setState({ showText: !this.state.showText });
+    }, 1000)  ;
+  }
+
   render() {
+    let display = this.state.showText ? this.props.text : '';
     return (
-      <Text>Hello {this.props.name} !</Text>
-    );
+      <Text>{display}</Text>
+    )
   }
 }
 
-class LotsOfGreentings extends Component {
-  render() {
+
+
+class BlinkApp extends Component {
+  render () {
     return (
-      <View style={{alignItems: 'center'}}>
-        <Greeting name="Julian" />
-        <Greeting name="Yoel" />
-        <Greeting name="Valeria" />
+      <View>
+        <Blink text='I love to blink' />
+        <Blink text='Yes blinking is so great' />
+        <Blink text='Why did they ever take this out of Html' />
+        <Blink text='Look at me look at me look at me' />
       </View>
     );
   }
 }
 
-AppRegistry.registerComponent('MyFirstApp', () => LotsOfGreentings);
+AppRegistry.registerComponent('MyFirstApp', () => BlinkApp);
